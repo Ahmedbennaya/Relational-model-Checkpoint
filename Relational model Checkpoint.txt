@@ -1,0 +1,36 @@
+Create Hotel Table
+CREATE TABLE Hotel (
+    HotelID INT PRIMARY KEY AUTO_INCREMENT,
+    HotelName VARCHAR(100) NOT NULL,
+    Address VARCHAR(255) NOT NULL,
+    PhoneNumber VARCHAR(15) NOT NULL
+);
+Create Client Table
+CREATE TABLE Client (
+    ClientID INT PRIMARY KEY AUTO_INCREMENT,
+    FirstName VARCHAR(100) NOT NULL,
+    LastName VARCHAR(100) NOT NULL,
+    Address VARCHAR(255) NOT NULL,
+    PhoneNumber VARCHAR(15) NOT NULL
+);
+
+Create Room Table
+CREATE TABLE Room (
+    RoomNumber INT PRIMARY KEY AUTO_INCREMENT,
+    HotelID INT NOT NULL,
+    Type VARCHAR(50) NOT NULL,
+    Price DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (HotelID) REFERENCES Hotel(HotelID)
+);
+
+ Create Reservation Table
+CREATE TABLE Reservation (
+    ReservationID INT PRIMARY KEY AUTO_INCREMENT,
+    ReservationDate DATE NOT NULL,
+    CheckInDate DATE NOT NULL,
+    CheckOutDate DATE NOT NULL,
+    ClientID INT NOT NULL,
+    RoomNumber INT NOT NULL,
+    FOREIGN KEY (ClientID) REFERENCES Client(ClientID),
+    FOREIGN KEY (RoomNumber) REFERENCES Room(RoomNumber)
+);
